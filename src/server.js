@@ -1,4 +1,19 @@
 const express = require('express');
+const MongoClient = require('mongodb').MongoClient;
+require('dotenv').config();
+const dbUrl = process.env.BD_URL;
+
+MongoClient.connect(dbUrl,{
+    useUnifiedTopology:true
+},(err,database)=>{
+    if(err){
+        return console.log('Error',err);
+    }else{
+        console.log('Conexion con exito');
+    }
+});
+
+
 const app = express();
 
 app.get('/', (request,response) => {
